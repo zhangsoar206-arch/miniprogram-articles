@@ -1,0 +1,11 @@
+{
+  "id": "article_20260630_135738",
+  "title": "欢迎使用知识库小程序",
+  "content": "<p>这是一篇测试文章，用于验证 GitHub 数据源是否正常工作。</p><p>如果你能看到这篇文章，说明小程序已经成功切换到 GitHub 数据源！</p>",
+  "category": "测试",
+  "coverImage": null,
+  "createTime": "2026-06-30T13:57:38.738602",
+  "updateTime": "2026-06-30T13:57:38.738602",
+  "viewCount": 0,
+  "isFree": true
+}
