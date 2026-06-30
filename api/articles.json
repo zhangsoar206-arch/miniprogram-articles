@@ -1,5 +1,16 @@
 {
-  "articles": [],
-  "categories": [],
-  "lastUpdate": ""
+  "articles": [
+    {
+      "id": "article_20260630_135738",
+      "title": "欢迎使用知识库小程序",
+      "category": "测试",
+      "createTime": "2026-06-30T13:57:38.738602",
+      "coverImage": null,
+      "isFree": true
+    }
+  ],
+  "categories": [
+    "测试"
+  ],
+  "lastUpdate": "2026-06-30T13:57:40.805964"
 }
