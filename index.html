@@ -378,7 +378,7 @@ async function syncArticles() {
     const res = await fetch(CONFIG.indexUrl);
     if (!res.ok) throw new Error('获取索引失败，状态码：' + res.status);
     const data = await res.json();
-    const content = JSON.parse(atob(data.content));
+    const content = JSON.parse(decodeURIComponent(escape(atob(data.content))));
     articles = content.articles || [];
     
     // 获取各文章的 SHA
