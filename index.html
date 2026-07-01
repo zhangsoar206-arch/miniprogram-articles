@@ -453,19 +453,33 @@ function openAddModal() {
   document.getElementById('articleModal').classList.add('show');
 }
 
-function openEditModal(id) {
+async function openEditModal(id) {
   const a = articles.find(x => x.id === id);
   if (!a) return;
-  editingId = id;
-  document.getElementById('modalTitle').textContent = '编辑文章';
-  document.getElementById('saveBtn').textContent = '保存并更新';
-  document.getElementById('artTitle').value = a.title || '';
-  document.getElementById('artCategory').value = a.category || '副业项目';
-  document.getElementById('artSummary').value = a.summary || '';
-  document.getElementById('artContent').value = a.content || '';
-  document.getElementById('artIsFree').checked = a.isFree !== false;
-  document.getElementById('previewGroup').style.display = 'none';
-  document.getElementById('articleModal').classList.add('show');
+  
+  showLoading('加载文章内容...');
+  try {
+    // 从 GitHub 获取完整文章内容
+    const res = await fetch(CONFIG.articleBase + id + '.json');
+    if (!res.ok) throw new Error('获取文章失败');
+    const data = await res.json();
+    const content = JSON.parse(decodeURIComponent(escape(atob(data.content))));
+    
+    editingId = id;
+    document.getElementById('modalTitle').textContent = '编辑文章';
+    document.getElementById('saveBtn').textContent = '保存并更新';
+    document.getElementById('artTitle').value = content.title || '';
+    document.getElementById('artCategory').value = content.category || '副业项目';
+    document.getElementById('artSummary').value = content.summary || '';
+    document.getElementById('artContent').value = content.content || '';
+    document.getElementById('artIsFree').checked = content.isFree !== false;
+    document.getElementById('previewGroup').style.display = 'none';
+    document.getElementById('articleModal').classList.add('show');
+  } catch (e) {
+    showToast('加载文章失败：' + e.message, 'error');
+  } finally {
+    hideLoading();
+  }
 }
 
 function closeModal() {
