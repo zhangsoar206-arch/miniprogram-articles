@@ -120,34 +120,27 @@
 </head>
 <body>
 
-<!-- Token 设置页 -->
-<div class="login-wrap" id="tokenPage" style="display:none;">
-  <div class="login-card">
-    <h1>GitHub Token</h1>
-    <p style="font-size:13px;color:#888;margin-bottom:20px;">首次使用需输入 GitHub 令牌，用于读写文章数据</p>
-    <input type="password" id="tokenInput" placeholder="输入 ghp_xxx 令牌" onkeydown="if(event.key==='Enter')saveToken()">
-    <button onclick="saveToken()">确 定</button>
-    <div style="margin-top:16px;padding:14px;background:#fffbeb;border-radius:8px;text-align:left;font-size:13px;color:#92400e;line-height:1.8;">
-      <b>获取 Token 步骤：</b><br>
-      1. 打开 <a href="https://github.com/settings/tokens" target="_blank" style="color:#6366f1;">github.com/settings/tokens</a><br>
-      2. 点击 "Generate new token (classic)"<br>
-      3. 勾选 <b>repo</b> 全部权限<br>
-      4. 创建后复制 token（ghp_ 开头）粘贴上方
-    </div>
-    <div class="login-error" id="tokenError">Token 无效或权限不足</div>
-  </div>
-</div>
-
-<!-- 登录页 -->
+<!-- 登录页（含 Token 设置） -->
 <div class="login-wrap" id="loginPage">
   <div class="login-card">
-    <h1>🔐 文章管理后台</h1>
-    <p>知识库小程序 · GitHub 数据源</p>
-    <input type="password" id="passwordInput" placeholder="请输入管理密码" onkeydown="if(event.key==='Enter')doLogin()">
+    <h1>📚 文章管理后台</h1>
+    <p>知识库小程序 · 管理密码登录</p>
+    <input type="password" id="passwordInput" placeholder="管理密码" onkeydown="if(event.key==='Enter')doLogin()" style="margin-bottom:12px;">
+    <div style="margin-bottom:16px;text-align:left;" id="tokenSection">
+      <div style="font-size:13px;color:#888;margin-bottom:6px;">GitHub Token <span id="tokenStatus" style="color:#ef4444;">（未设置）</span></div>
+      <div style="display:flex;gap:8px;">
+        <input type="password" id="tokenInput" placeholder="输入 ghp_xxx 令牌" style="flex:1;margin-bottom:0;">
+        <button onclick="saveToken()" style="width:auto;padding:14px 20px;background:#10b981;white-space:nowrap;">验证</button>
+      </div>
+      <div id="tokenHint" style="display:none;margin-top:8px;padding:10px;background:#fffbeb;border-radius:8px;font-size:12px;color:#92400e;line-height:1.8;">
+        <b>获取 Token：</b><a href="https://github.com/settings/tokens" target="_blank" style="color:#6366f1;">github.com/settings/tokens</a> → Generate new token → 勾选 <b>repo</b> → 复制
+      </div>
+    </div>
     <button onclick="doLogin()">登 录</button>
     <div class="login-error" id="loginError">密码错误，请重试</div>
-    <div style="margin-top:16px;text-align:center;">
-      <a href="https://zhangsoar206-arch.github.io/miniprogram-articles/" target="_blank" style="font-size:12px;color:#6366f1;">查看小程序 &rarr;</a>
+    <div class="login-error" id="tokenError">Token 无效或权限不足</div>
+    <div style="margin-top:12px;text-align:center;">
+      <a href="javascript:void(0)" id="showTokenHint" style="font-size:12px;color:#888;" onclick="document.getElementById('tokenHint').style.display='block';this.style.display='none';">没有 Token？点此查看获取方法</a>
     </div>
   </div>
 </div>
@@ -289,31 +282,39 @@ let currentDeleteId = null;
 
 function saveToken() {
   const token = document.getElementById('tokenInput').value.trim();
+  const statusEl = document.getElementById('tokenStatus');
   if (!token || !token.startsWith('ghp_')) {
-    document.getElementById('tokenError').style.display = 'block';
+    statusEl.textContent = '（格式错误）';
+    statusEl.style.color = '#ef4444';
     return;
   }
   sessionStorage.setItem('gh_token', token);
   CONFIG.token = token;
+  document.getElementById('tokenError').style.display = 'none';
+  statusEl.textContent = '（验证中...）';
   fetch('https://api.github.com/repos/zhangsoar206-arch/miniprogram-articles', {
     headers: { 'Authorization': 'token ' + token }
   }).then(r => {
     if (!r.ok) throw new Error();
-    document.getElementById('tokenPage').style.display = 'none';
-    document.getElementById('loginPage').style.display = 'flex';
+    statusEl.textContent = '（已验证 &#10003;）';
+    statusEl.style.color = '#10b981';
+    document.getElementById('tokenHint').style.display = 'none';
     showToast('Token 验证通过', 'success');
   }).catch(() => {
-    document.getElementById('tokenError').style.display = 'block';
+    statusEl.textContent = '（无效）';
+    statusEl.style.color = '#ef4444';
     sessionStorage.removeItem('gh_token');
     CONFIG.token = '';
+    document.getElementById('tokenError').style.display = 'block';
   });
 }
 
 // ============ 登录 ============
 function doLogin() {
   if (!CONFIG.token) {
-    document.getElementById('loginPage').style.display = 'none';
-    document.getElementById('tokenPage').style.display = 'flex';
+    showToast('请先设置 GitHub Token', 'error');
+    document.getElementById('tokenHint').style.display = 'block';
+    document.getElementById('tokenInput').focus();
     return;
   }
   const pwd = document.getElementById('passwordInput').value.trim();
@@ -332,10 +333,17 @@ function doLogin() {
   if (sessionStorage.getItem('adminLoggedIn') === '1' && CONFIG.token) {
     document.getElementById('loginPage').style.display = 'none';
     document.getElementById('adminPage').classList.add('show');
+    // 更新 token 状态显示
+    var statusEl = document.getElementById('tokenStatus');
+    if (statusEl) { statusEl.textContent = '（已验证）'; statusEl.style.color = '#10b981'; }
     syncArticles();
   } else if (sessionStorage.getItem('adminLoggedIn') === '1') {
-    document.getElementById('loginPage').style.display = 'none';
-    document.getElementById('tokenPage').style.display = 'flex';
+    document.getElementById('loginPage').style.display = 'flex';
+  }
+  // 恢复 token 状态
+  if (CONFIG.token && document.getElementById('tokenStatus')) {
+    document.getElementById('tokenStatus').textContent = '（已保存）';
+    document.getElementById('tokenStatus').style.color = '#10b981';
   }
 })();
 
