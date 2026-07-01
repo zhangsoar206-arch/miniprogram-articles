@@ -460,7 +460,7 @@ async function openEditModal(id) {
   showLoading('加载文章内容...');
   try {
     // 从 GitHub 获取完整文章内容
-    const res = await fetch(CONFIG.articleBase + id + '.json');
+    const res = await fetch(CONFIG.articlesDir + '/' + id + '.json');
     if (!res.ok) throw new Error('获取文章失败');
     const data = await res.json();
     const content = JSON.parse(decodeURIComponent(escape(atob(data.content))));
