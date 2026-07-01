@@ -1,6 +1,14 @@
 {
   "articles": [
     {
+      "id": "article_20260701_aigc_6styles",
+      "title": "AIGC照片转插画6种爆款风格提示词（纯干货版）",
+      "category": "AIGC",
+      "createTime": "2026-07-01T10:20:54",
+      "coverImage": null,
+      "isFree": true
+    },
+    {
       "id": "article_20260630_135738",
       "title": "欢迎使用知识库小程序",
       "category": "测试",
@@ -10,7 +18,8 @@
     }
   ],
   "categories": [
-    "测试"
+    "测试",
+    "AIGC"
   ],
-  "lastUpdate": "2026-06-30T13:57:40.805964"
+  "lastUpdate": "2026-07-01T10:20:57"
 }
