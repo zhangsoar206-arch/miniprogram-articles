@@ -1,7 +1,7 @@
 {
   "id": "article_20260701_seedance_workflow",
   "title": "Seedance2.0零实拍AI广告短片保姆级工作流",
-  "category": "AIGC",
+  "category": "AI工具",
   "summary": "Gemini+Nano Banana+Seedance2.0三工具联动，从创意到成品标准化执行，新手也能快速上手零实拍AI广告短片",
   "content": "<h2>一、核心工具准备</h2>\n<ol>\n<li><strong>Gemini</strong>：核心做AI编导，输出分镜脚本、转译升图提示词并封装为JSON格式</li>\n<li><strong>Nano Banana</strong>（谷歌Flow平台）：AI分镜师，基于JSON提示词生成九宫格分镜图（推荐Pro版，对复杂提示词理解更精准）</li>\n<li><strong>Seedance2.0（即梦视频）</strong>：将静态分镜图转为动态视频，支持全能参考保障产品一致性</li>\n</ol>\n\n<h2>二、保姆级操作步骤（以猫粮广告为例）</h2>\n\n<h3>步骤1：调教Gemini，让其化身专业带货短视频编导</h3>\n<p>向Gemini发送<strong>分层级的调教提示词</strong>，核心让它明确自身身份、任务和输出模板，具体逻辑层级为：</p>\n<ul>\n<li><strong>身份：</strong>短视频专家，具备带货短视频编导思路+产品卖点挖掘能力</li>\n<li><strong>任务：</strong>先输出中文分镜脚本（含镜头语言/画面内容），确认无误后转英文升图提示词，封装为标准JSON代码</li>\n<li><strong>输出模板：</strong>明确分镜脚本的格式（分镜、景别、运镜、主体动态、画面内容），确保输出标准化</li>\n</ul>\n\n<h3>步骤2：提供核心信息，让Gemini生成第一轮分镜脚本</h3>\n<p>向Gemini告知<strong>商品核心卖点+目标人群+视觉参考</strong>（例：猫粮=高含量鸡肉+猫咪爱吃），Gemini会直接拆解卖点，输出包含<strong>分镜、景别、运镜、主体动态、具体画面</strong>的完整分镜脚本，一步到位。</p>\n\n<h3>步骤3：优化脚本，强化画面动态感</h3>\n<p>检查脚本，剔除呆板表述（如\"静止锁定\"），向Gemini提出修改要求（例：不要静止锁定描述），确认脚本无问题后，让其基于最终脚本生成<strong>JSON格式的九宫格升图分镜词</strong>，直接复制该代码备用。</p>\n\n<h3>步骤4：用Nano Banana生成九宫格分镜图</h3>\n<ol>\n<li>打开<strong>谷歌Flow平台</strong>，新建项目，粘贴上述JSON提示词，上传产品参考图（保障生成的产品和实物一致）</li>\n<li>模型选择<strong>Nano Banana Pro</strong>（新2.0模型功能强化，但Pro版对复杂提示词理解更精准）</li>\n<li>生成分镜图，若不满意可多次生成（抽卡），直至得到符合预期的九宫格分镜图。</li>\n</ol>\n\n<h3>步骤5：用Seedance2.0将分镜图转为动态广告视频</h3>\n<ol>\n<li>打开<strong>即梦视频</strong>，模型选择<strong>Seedance2.0</strong>，开启<strong>全能参考</strong>功能</li>\n<li>上传<strong>分镜图+产品参考图</strong>，粘贴Gemini最终生成的分镜脚本</li>\n<li>按要求下达指令：基于分镜图1-9按顺序生成连贯视频，保障产品一致性</li>\n<li>设置视频参数：常用<strong>9:16竖版尺寸</strong>，按需求选时长（例：15秒）</li>\n<li>点击生成即可（若排队久可参考原作者上期视频的小众宝藏入口）。</li>\n</ol>\n\n<h2>三、核心关键技巧</h2>\n<ol>\n<li><strong>Gemini提示词是核心</strong>：做好<strong>三层逻辑层级</strong>（身份+任务+输出模板），能让AI稳定输出标准化内容，避免无效结果</li>\n<li><strong>产品一致性保障</strong>：全程上传产品参考图，Nano Banana和Seedance2.0均需参考，避免生成的产品和实物偏差</li>\n<li><strong>工具版本选择</strong>：Nano Banana优先选Pro版，对复杂提示词的理解和还原度更高</li>\n<li><strong>脚本优化不可少</strong>：剔除\"静止锁定\"等呆板表述，强化动态感和节奏感，让最终视频更生动</li>\n<li><strong>解决传统拍摄痛点</strong>：AI生成可规避实拍的各类问题（例：猫粮广告中猫演员不配合、冰淇淋广告中融化速度难控制等）。</li>\n</ol>\n\n<h2>四、工作流复用场景</h2>\n<p>这套方法不局限于猫粮广告，可根据需求修改Gemini的人设和核心信息，适配多种场景：</p>\n<ul>\n<li>生鲜带货（如农场水果：现摘现发、带露水、口感等卖点）</li>\n<li>居家场景（模特产品展示）</li>\n<li>美妆品类（产品特写、质感展示）</li>\n<li>品牌概念广告片</li>\n<li>甚至电影级短片（将Gemini人设改为<strong>专业电影导演</strong>即可）。</li>\n</ul>\n\n<h2>五、核心逻辑</h2>\n<p>这套工作流的本质是<strong>把创意拆解为可执行的标准动作</strong>，让每个AI工具都有明确的输入和输出，无需实拍、低成本、高效率，普通人也能借助AI做出高质量的广告短片，甚至可替代部分编导的基础工作。</p>\n",
   "coverImage": "https://raw.githubusercontent.com/zhangsoar206-arch/miniprogram-articles/main/images/seedance_workflow/cover.jpg",
@@ -9,7 +9,7 @@
   "createTime": "2026-07-01T15:52:00",
   "views": 0,
   "tags": [
-    "AIGC",
+    "AI工具",
     "Seedance",
     "即梦视频",
     "AI视频",
