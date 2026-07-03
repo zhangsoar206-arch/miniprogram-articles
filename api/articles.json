@@ -1,25 +1,47 @@
 {
   "articles": [
     {
+      "id": "article_20260701_vlog_storytelling",
+      "title": "抖音Vlog拍成故事的大师级技巧",
+      "category": "自媒体创作",
+      "createTime": "2026-07-01T15:50:00",
+      "coverImage": "https://raw.githubusercontent.com/zhangsoar206-arch/miniprogram-articles/main/images/vlog_storytelling/cover.jpg",
+      "isFree": true,
+      "summary": "3个大师级技巧：用故事感替代流水账，开篇3秒定调，四步叙事结构，镜头语言传递情绪，电影感加分技巧"
+    },
+    {
+      "id": "article_20260701_seedance_workflow",
+      "title": "Seedance2.0零实拍AI广告短片保姆级工作流",
+      "category": "AI工具",
+      "createTime": "2026-07-01T15:52:00",
+      "coverImage": "https://raw.githubusercontent.com/zhangsoar206-arch/miniprogram-articles/main/images/seedance_workflow/cover.jpg",
+      "isFree": true,
+      "summary": "Gemini+Nano Banana+Seedance2.0三工具联动，从创意到成品标准化执行，新手也能快速上手零实拍AI广告短片"
+    },
+    {
       "id": "article_20260701_aigc_6styles",
       "title": "AIGC照片转插画6种爆款风格提示词（纯干货版）",
       "category": "AIGC",
       "createTime": "2026-07-01T10:20:54",
       "coverImage": "https://raw.githubusercontent.com/zhangsoar206-arch/miniprogram-articles/main/images/aigc_article/img_1.jpg",
-      "isFree": true
+      "isFree": true,
+      "summary": "6种爆款AI插画风格完整提示词：高级摄影、丑萌涂鸦、Color Walk、手绘PLOG、像素风、治愈扁平"
     },
     {
       "id": "article_20260630_135738",
       "title": "欢迎使用知识库小程序",
       "category": "测试",
-      "createTime": "2026-06-30T13:57:38.738602",
+      "createTime": "2026-06-30T13:57:38",
       "coverImage": null,
-      "isFree": true
+      "isFree": true,
+      "summary": "知识库小程序使用指南"
     }
   ],
   "categories": [
-    "测试",
-    "AIGC"
+    "自媒体创作",
+    "AI工具",
+    "AIGC",
+    "测试"
   ],
-  "lastUpdate": "2026-07-01T10:20:57"
+  "lastUpdate": "2026-07-03T09:34:00"
 }
